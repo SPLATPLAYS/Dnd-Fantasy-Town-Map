@@ -1,0 +1,16 @@
+{
+    "name": "dnd-town-builder",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Static D&D town builder for GitHub Pages (bun + rspack optional)",
+    "scripts": {
+        "dev": "rspack serve --config rspack.config.js",
+        "build": "rspack --config rspack.config.js",
+        "start": "node ./serve-static.js"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "rspack": "^1.0.0",
+        "rspack-cli": "^1.0.0"
+    }
+}
