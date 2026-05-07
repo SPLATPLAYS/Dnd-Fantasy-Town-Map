@@ -8,7 +8,8 @@ const root = process.cwd();
 http.createServer((req, res) => {
     let url = req.url.split('?')[0];
     if (url === '/' || url === '') url = '/index.html';
-    const filePath = path.join(root, url);
+    const requestPath = decodeURIComponent(url).replace(/^\/+/, '');
+    const filePath = path.resolve(root, requestPath);
     fs.readFile(filePath, (err, data) => {
         if (err) { res.writeHead(404); res.end('Not found'); return; }
         const ext = path.extname(filePath).toLowerCase();

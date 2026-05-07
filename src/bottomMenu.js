@@ -1,5 +1,6 @@
 import { saveAllToLocal, downloadJSON } from './storage.js';
 import { createEntitiesBulk } from './dataModels.js';
+import TextureManager from './textureManager.js';
 
 export default class BottomMenu {
     constructor(editor, initial) {
@@ -7,6 +8,8 @@ export default class BottomMenu {
         this.state = initial || {};
         this.mapName = (this.state.map && this.state.map.name) || 'my-town';
         this.activeTool = 'paint';
+        this.textureMgr = new TextureManager();
+        this.selectedTexture = null;
     }
 
     init() {
@@ -16,20 +19,65 @@ export default class BottomMenu {
         this._renderBuildingsPanel();
         this._renderEntitiesPanel();
         this._renderExportPanel();
+        // initialize textures async
+        this._initTextures();
+    }
+
+    async _initTextures() {
+        await this.textureMgr.init();
+        this._renderTextureCategories();
     }
 
     _bindMenuButtons() {
         const undoBtn = document.getElementById('undo-btn');
         const redoBtn = document.getElementById('redo-btn');
-        const terrainSelector = document.getElementById('terrain-selector');
 
         if (undoBtn) undoBtn.addEventListener('click', () => this.editor.undo());
         if (redoBtn) redoBtn.addEventListener('click', () => this.editor.redo());
-        if (terrainSelector) {
-            terrainSelector.addEventListener('change', e => {
-                this.editor.setTerrain(e.target.value);
+
+        // note: texture categories rendered once TextureManager is ready
+    }
+
+    _renderTextureCategories() {
+        const container = document.getElementById('texture-categories');
+        if (!container) return;
+        container.innerHTML = '';
+        const cats = this.textureMgr.getCategories();
+        for (const c of cats) {
+            const btn = document.createElement('button');
+            btn.className = 'texture-cat-btn';
+            btn.textContent = c;
+            btn.addEventListener('click', (ev) => {
+                const rect = ev.currentTarget.getBoundingClientRect();
+                this._showTextureVariants(c, rect);
             });
+            container.appendChild(btn);
         }
+    }
+
+    _showTextureVariants(category, rect) {
+        const panel = document.getElementById('texture-variants-panel');
+        if (!panel) return;
+        const list = this.textureMgr.getVariations(category);
+        panel.innerHTML = '';
+        for (const p of list) {
+            const img = document.createElement('img');
+            img.src = this.textureMgr.getImageUrl(p);
+            img.className = 'texture-thumb';
+            if (this.selectedTexture === p) img.classList.add('selected');
+            img.title = p.split('/').pop();
+            img.addEventListener('click', () => {
+                this.selectedTexture = p;
+                this.editor.setTexture(p);
+                // visually select
+                panel.querySelectorAll('.texture-thumb').forEach(t => t.classList.remove('selected'));
+                img.classList.add('selected');
+            });
+            panel.appendChild(img);
+        }
+        // position panel near clicked category (attempt center over button)
+        panel.style.left = Math.min(window.innerWidth - 40, Math.max(20, rect.left + rect.width / 2)) + 'px';
+        panel.classList.remove('hidden');
     }
 
     _bindToolButtons() {

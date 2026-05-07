@@ -242,3 +242,60 @@ input {
 .container {
     margin-bottom: 60px
 }
+
+/* Texture categories and variant picker */
+.texture-categories {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.texture-cat-btn {
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: #d4f1d4;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.texture-cat-btn:hover {
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-2px);
+}
+
+.floating-texture-panel {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(11, 18, 32, 0.97), rgba(7, 20, 40, 0.99));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 120;
+    display: flex;
+    gap: 8px;
+    max-width: 90vw;
+    overflow-x: auto;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.floating-texture-panel.hidden {
+    display: none
+}
+
+.texture-thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+}
+
+.texture-thumb.selected {
+    border-color: var(--accent);
+    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.14);
+}

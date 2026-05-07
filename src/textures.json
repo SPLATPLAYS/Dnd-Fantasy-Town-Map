@@ -1,0 +1,73 @@
+{
+    "Grass": [
+        "assets/Grass/Grass.jpg",
+        "assets/Grass/Grass Bright.jpg",
+        "assets/Grass/Grass Dark.jpg",
+        "assets/Grass/Grass Dark Rocky.jpg",
+        "assets/Grass/Sparse Grass.jpg",
+        "assets/Grass/Sparse Grass Bright.jpg",
+        "assets/Grass/Sparse Grass Dark.jpg"
+    ],
+    "Water": [
+        "assets/Water/Seamless Calm Water 16x16.jpg",
+        "assets/Water/Seamless Calm Water 16x16 B.jpg"
+    ],
+    "Stone": [
+        "assets/Stone/Flat Stone Floor A.jpg",
+        "assets/Stone/Flat Stone Floor B.jpg",
+        "assets/Stone/Rock Tiles A.jpg",
+        "assets/Stone/Rock Tiles B.jpg",
+        "assets/Stone/Rock Tiles Mossy A.jpg",
+        "assets/Stone/Rock Tiles Mossy B.jpg",
+        "assets/Stone/Rock Tiles Mossy C.jpg",
+        "assets/Stone/Flat Rocks Overlay A.png",
+        "assets/Stone/Flat Rocks Overlay B.png",
+        "assets/Stone/Flat Rocks Overlay C.png"
+    ],
+    "Cobblestone": [
+        "assets/Cobblestone/Cobblestone A.jpg",
+        "assets/Cobblestone/Cobblestone B.jpg",
+        "assets/Cobblestone/Square Cobblestone A.jpg",
+        "assets/Cobblestone/Square Cobblestone B.jpg",
+        "assets/Cobblestone/Square Cobblestone C.jpg",
+        "assets/Cobblestone/Square Cobblestone D.jpg",
+        "assets/Cobblestone/Square Cobblestone E.jpg"
+    ],
+    "Tiles": [
+        "assets/Tiles/Square Tiles A.jpg",
+        "assets/Tiles/Square Tiles B.jpg",
+        "assets/Tiles/Square Tiles C.jpg",
+        "assets/Tiles/Square Tiles D.jpg",
+        "assets/Tiles/Square Tiles E.jpg",
+        "assets/Tiles/Square Tiles F.jpg",
+        "assets/Tiles/Square Tiles G.jpg",
+        "assets/Tiles/Square Tiles H.jpg",
+        "assets/Tiles/Square Tiles I.jpg",
+        "assets/Tiles/Square Tiles J.jpg",
+        "assets/Tiles/Rectangular Tiles A.jpg",
+        "assets/Tiles/Rectangular Tiles B.jpg",
+        "assets/Tiles/Rectangular Tiles C.jpg",
+        "assets/Tiles/Rectangular Tiles D.jpg",
+        "assets/Tiles/Rectangular Tiles E.jpg",
+        "assets/Tiles/Gray Brick Floor A.jpg",
+        "assets/Tiles/Gray Brick Floor B.jpg",
+        "assets/Tiles/Gray Brick Floor C.jpg",
+        "assets/Tiles/Gray Brick Floor D.jpg"
+    ],
+    "Herringbone": [
+        "assets/Herringbone/Herringbone A.jpg",
+        "assets/Herringbone/Herringbone B.jpg",
+        "assets/Herringbone/Herringbone C.jpg",
+        "assets/Herringbone/Herringbone Overlay A.png",
+        "assets/Herringbone/Herringbone Overlay B.png",
+        "assets/Herringbone/Herringbone Overlay C.png"
+    ],
+    "Brick": [
+        "assets/Brick/Uneven Brick Floor A.jpg",
+        "assets/Brick/Uneven Brick Floor B.jpg",
+        "assets/Brick/Uneven Brick Floor C.jpg",
+        "assets/Brick/Uneven Brick Floor D.jpg",
+        "assets/Brick/Uneven Brick Floor E.jpg",
+        "assets/Brick/Uneven Brick Floor F.jpg"
+    ]
+}

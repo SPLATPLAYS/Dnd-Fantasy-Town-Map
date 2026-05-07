@@ -14,6 +14,8 @@ class MapEditor {
         this.zoom = 1;
         this.offset = { x: 0, y: 0 };
 
+        this.texture = null; // currently selected texture path (if any)
+
         this.map = initialMap || createDefaultMap(40, 30);
 
         this.dragging = false; this.last = null;
@@ -180,7 +182,9 @@ class MapEditor {
         if (terrain === 'air') {
             delete this.map.tiles[key];
         } else {
-            this.map.tiles[key] = { terrain };
+            const tile = { terrain };
+            if (this.texture) tile.texture = this.texture;
+            this.map.tiles[key] = tile;
         }
     }
 
@@ -189,6 +193,8 @@ class MapEditor {
         const y0 = Math.min(a.y, b.y), y1 = Math.max(a.y, b.y);
         for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) this._paintTile(x, y, terrain);
     }
+
+    setTexture(src) { this.texture = src; }
 
     _commitBuilding(b) {
         const building = { id: b.id, name: b.name, type: b.type, function: b.function, x: b.x, y: b.y, w: b.w, h: b.h, slots: [] };
@@ -255,9 +261,22 @@ class MapEditor {
         // draw terrain tiles
         for (const k in this.map.tiles) {
             const [x, y] = k.split(',').map(Number);
-            const t = this.map.tiles[k].terrain || 'grass';
-            ctx.fillStyle = this._terrainColor(t);
-            ctx.fillRect(x, y, 1, 1);
+            const tile = this.map.tiles[k];
+            const t = tile.terrain || 'grass';
+            // if a texture is assigned and TextureManager available, draw it
+            if (tile.texture && window.textureManager) {
+                const img = window.textureManager.getImage(tile.texture);
+                if (img) {
+                    try { ctx.drawImage(img, x, y, 1, 1); }
+                    catch (e) { ctx.fillStyle = this._terrainColor(t); ctx.fillRect(x, y, 1, 1); }
+                } else {
+                    ctx.fillStyle = this._terrainColor(t);
+                    ctx.fillRect(x, y, 1, 1);
+                }
+            } else {
+                ctx.fillStyle = this._terrainColor(t);
+                ctx.fillRect(x, y, 1, 1);
+            }
             // building overlay
             if (this.map.tiles[k].building) {
                 ctx.strokeStyle = 'rgba(0,0,0,0.5)';
