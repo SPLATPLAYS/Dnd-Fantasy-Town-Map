@@ -14,12 +14,43 @@
             <h1>DND Town Builder</h1>
         </header>
         <main class="container">
-            <aside id="sidebar"></aside>
+            <aside id="sidebar" style="display:none"></aside>
             <section id="map-area">
                 <canvas id="map-canvas"></canvas>
             </section>
         </main>
         <footer id="footer"></footer>
+
+        <!-- Floating Bottom Menu -->
+        <div id="bottom-menu" class="bottom-menu">
+            <div class="menu-left">
+                <button id="undo-btn" class="menu-btn" title="Undo (Ctrl+Z)">↶</button>
+                <button id="redo-btn" class="menu-btn" title="Redo (Ctrl+Y)">↷</button>
+            </div>
+            <div class="menu-center">
+                <select id="terrain-selector" class="menu-select">
+                    <option value="grass">Grass</option>
+                    <option value="dirt">Dirt</option>
+                    <option value="water">Water</option>
+                    <option value="farmland">Farmland</option>
+                    <option value="road">Road</option>
+                    <option value="air">Air (Clear)</option>
+                </select>
+                <button id="paint-btn" class="menu-btn" title="Paint Tool">🖌</button>
+                <button id="rect-btn" class="menu-btn" title="Rectangle Tool">▭</button>
+                <button id="pan-btn" class="menu-btn" title="Pan Tool">✋</button>
+            </div>
+            <div class="menu-right">
+                <button id="buildings-btn" class="menu-btn" title="Buildings">🏠</button>
+                <button id="entities-btn" class="menu-btn" title="Entities">👥</button>
+                <button id="export-btn" class="menu-btn" title="Export">💾</button>
+            </div>
+        </div>
+
+        <!-- Floating Panels -->
+        <div id="buildings-panel" class="floating-panel hidden"></div>
+        <div id="entities-panel" class="floating-panel hidden"></div>
+        <div id="export-panel" class="floating-panel hidden"></div>
     </div>
 
     <script type="module" src="src/main.js"></script>
