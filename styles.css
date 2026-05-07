@@ -17,14 +17,40 @@ body {
     color: #e6eef8
 }
 
-header {
-    padding: 12px 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04)
+.top-title {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 150;
+    pointer-events: none;
+}
+
+.title-bubble {
+    margin: 0;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: linear-gradient(180deg, rgba(9, 22, 43, 0.88), rgba(7, 18, 35, 0.86));
+    color: #fff3db;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+    transition: opacity 0.22s ease, transform 0.22s ease, filter 0.22s ease;
+    pointer-events: none;
+}
+
+.title-bubble:hover {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+    filter: blur(2px);
 }
 
 .container {
     display: flex;
-    height: calc(100vh - 84px)
+    height: calc(100vh - 60px)
 }
 
 aside#sidebar {
@@ -240,7 +266,14 @@ input {
 }
 
 .container {
-    margin-bottom: 60px
+    margin-bottom: 0
+}
+
+@media (max-width:800px) {
+    .title-bubble {
+        font-size: 0.95rem;
+        padding: 8px 14px;
+    }
 }
 
 /* Texture categories and variant picker */
