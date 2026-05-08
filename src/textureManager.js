@@ -13,11 +13,19 @@ export default class TextureManager {
             console.error('Failed to load textures manifest', err);
             this.manifest = {};
         }
-        // preload images
+        // preload images with progress events
         const all = Object.values(this.manifest).flat();
-        await Promise.all(all.map(p => this._loadImage(p)));
-        // expose globally for renderer access
+        const total = all.length;
+        let loaded = 0;
+        // expose globally early so event handlers can query images
         window.textureManager = this;
+        for (const p of all) {
+            await this._loadImage(p);
+            loaded++;
+            try { window.dispatchEvent(new CustomEvent('texture-progress', { detail: { loaded, total, path: p } })); } catch (e) { }
+        }
+        // finished
+        try { window.dispatchEvent(new CustomEvent('texture-done', { detail: { total } })); } catch (e) { }
     }
 
     getCategories() {
